@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ main, master ]
 
+env:
+  REGISTRY: "cr.selcloud.ru/go-server"
+  IMAGE_NAME: "test-server"
+  CONTAINER_NAME: "test-server"
+  TAG_NAME: "v0.0.1"
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -49,7 +55,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Login to Docker Registry
-        run: docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} ${{ REGISTRY }}
+        run: docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} $REGISTRY
 
       - name: Build and Push Docker Image
         run: |
@@ -73,7 +79,7 @@ jobs:
             # Set up variables
             TAG_NAME=$(echo $GITHUB_SHA | head -c7)
             
-            # Login into Selectel Registry
+            # Login into Registry
             docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }} $REGISTRY
             
             # Stop running container
