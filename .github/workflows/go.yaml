@@ -41,7 +41,6 @@ jobs:
 
   image-build-and-push:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout master
         uses: actions/checkout@v3
