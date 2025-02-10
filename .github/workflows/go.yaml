@@ -10,7 +10,6 @@ env:
   REGISTRY: "cr.selcloud.ru/go-server"
   IMAGE_NAME: "test-server"
   CONTAINER_NAME: "test-server"
-  TAG_NAME: "v0.0.1"
 
 jobs:
   build-and-test:
